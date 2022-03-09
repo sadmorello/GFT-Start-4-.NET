@@ -1,4 +1,4 @@
-using Cadastro_de_Series.IRepository;
+using Cadastro_de_Series.Interface;
 
 namespace Cadastro_de_Series
 {
@@ -8,7 +8,7 @@ namespace Cadastro_de_Series
 
         public void Insert(Serie entity)
         {
-            listSerie[id].Add(entity);
+            listSerie.Add(entity);
         }
         public void Delete(int id)
         {

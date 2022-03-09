@@ -1,4 +1,4 @@
-namespace Cadastro_de_Series.Enum
+namespace Cadastro_de_Series
 {
     public enum Category
     {

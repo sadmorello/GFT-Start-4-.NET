@@ -4,6 +4,7 @@ namespace Cadastro_de_Series
 {
     class Program
     {
+        static SerieRepository repository = new SerieRepository();
         static void Main(string[] args)
         {
             string option = GetOption();
@@ -51,7 +52,7 @@ namespace Cadastro_de_Series
         private static void ViewSerie()
         {
             Write("Digite o id da série: ");
-            WriteLine(repository.RetornaPorId(int.Parse(ReadLine())));
+            WriteLine(repository.ReturnById(int.Parse(ReadLine())));
         }
 
         private static void UpdateSerie()
@@ -59,9 +60,9 @@ namespace Cadastro_de_Series
             Write("Digite o id da série: ");
             int idSerie = int.Parse(ReadLine());
 
-            foreach (int i in Enum.GetValues(typeof(Genero)))
+            foreach (int i in Enum.GetValues(typeof(Category)))
             {
-                WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+                WriteLine("{0}-{1}", i, Enum.GetName(typeof(Category), i));
             }
             Write("Digite o gênero entre as opções acima: ");
             int newCategory = int.Parse(ReadLine());
@@ -76,10 +77,10 @@ namespace Cadastro_de_Series
             string newDesc = ReadLine();
 
             Serie updateSerie = new Serie(id: idSerie,
-                                        genero: (Genero)newCategory,
-                                        titulo: newTitle,
-                                        ano: newYear,
-                                        descricao: newDesc);
+                                        category: (Category)newCategory,
+                                        title: newTitle,
+                                        year: newYear,
+                                        description: newDesc);
 
             repository.Update(idSerie, updateSerie);
         }
@@ -107,9 +108,9 @@ namespace Cadastro_de_Series
         {
             WriteLine("Inserir nova série");
 
-            foreach (int i in Enum.GetValues(typeof(Genero)))
+            foreach (int i in Enum.GetValues(typeof(Category)))
             {
-                WriteLine("{0}-{1}", i, Enum.GetName(typeof(Genero), i));
+                WriteLine("{0}-{1}", i, Enum.GetName(typeof(Category), i));
             }
             Write("Digite o gênero entre as opções acima: ");
             int newCategory = int.Parse(ReadLine());
@@ -129,7 +130,7 @@ namespace Cadastro_de_Series
                                         year: newYear,
                                         description: newDesc);
 
-            repository.Insere(newSerie);
+            repository.Insert(newSerie);
         }
 
         private static string GetOption()
